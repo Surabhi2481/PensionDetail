@@ -1,0 +1,34 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pensiondetail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: MFRP_Pension_Detail   
+  template:
+    metadata:
+      labels:
+        app: MFRP_Pension_Detail
+    spec:
+      containers:
+      - name: mfrp_pension_detail
+        image: pensionmanagementcr.azurecr.io/pensiondetailrepos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: pensionerdetailsn
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mfrp_pension_detail
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: MFRP_Pension_Detail
