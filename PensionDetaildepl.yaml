@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mfrppensiondetail
-        image: pensioncr.azurecr.io/pensionrepos:latest
+        image: pensionmanagementcr.azurecr.io/pensionrepos:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
